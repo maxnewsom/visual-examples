@@ -1,0 +1,37 @@
+name: Sauce Visual Check
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Run once a day at midnight
+  workflow_dispatch: # Allow manual trigger from GitHub Actions tab
+
+jobs:
+  sauce-visual-check:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./playwright-js
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: './playwright-js/package-lock.json'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Sauce Visual Check
+        run: npm run sauce-visual-check
+        env:
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
