@@ -9,11 +9,11 @@ jobs:
   sauce-visual-check:
     runs-on: ubuntu-latest
     env:
-      SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
-      SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+      SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME || secrets.SAUCE_USER || secrets.SAUCELABS_USERNAME }}
+      SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY || secrets.SAUCE_KEY || secrets.SAUCELABS_ACCESS_KEY }}
       # Some versions of Sauce tools use these
-      SAUCE_USER: ${{ secrets.SAUCE_USERNAME }}
-      SAUCE_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+      SAUCE_USER: ${{ secrets.SAUCE_USERNAME || secrets.SAUCE_USER || secrets.SAUCELABS_USERNAME }}
+      SAUCE_KEY: ${{ secrets.SAUCE_ACCESS_KEY || secrets.SAUCE_KEY || secrets.SAUCELABS_ACCESS_KEY }}
     
     defaults:
       run:
