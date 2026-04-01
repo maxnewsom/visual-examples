@@ -63,7 +63,7 @@ public class VisualTest {
     ignore.addAll(prices);
 
     visual.sauceVisualCheck(
-        "App Catalog", new CheckOptions.Builder().withIgnoreElements(ignore).build());
+        "App Catalog", new CheckOptions.Builder().withIgnoreElements(ignore).withCaptureDom(true).build());
   }
 
   @Test
@@ -71,7 +71,7 @@ public class VisualTest {
     CatalogPage catalogPage = new CatalogPage(driver);
     visual.sauceVisualCheck(
         "Catalog Fragment",
-        new CheckOptions.Builder().withClipElement(catalogPage.getCatalogContent()).build());
+        new CheckOptions.Builder().withCaptureDom(true).withClipElement(catalogPage.getProductImages().get(0)).build());
   }
 
   @Test
@@ -85,6 +85,7 @@ public class VisualTest {
                 new FullPageScreenshotConfig.Builder()
                     .withScrollElement(catalogPage.getFullPageCatalog())
                     .build())
-            .build());
+            .withCaptureDom(true)
+                .build());
   }
 }

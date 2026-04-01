@@ -27,7 +27,7 @@ public class TestUtils {
     // See: https://docs.saucelabs.com/visual-testing/mobile-native-testing/#best-practices
     MutableCapabilities caps = new MutableCapabilities();
     caps.setCapability("appium:deviceName", "iPhone 14 Pro");
-    caps.setCapability("appium:platformVersion", "17");
+    caps.setCapability("appium:platformVersion", "17.6.1");
     caps.setCapability("platformName", "iOS");
     caps.setCapability("appium:automationName", "XCUITest");
     caps.setCapability("appium:app", "storage:" + System.getenv("APP_FILEID"));

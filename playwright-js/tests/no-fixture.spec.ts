@@ -17,7 +17,26 @@ test('should be able to login with standard user', async ({ page }, testInfo) =>
 
     await page.waitForURL('**\/inventory.html', { waitUntil: 'networkidle' });
 
-    await sauceVisualCheck(page, testInfo, "Inventory Page");
+    await sauceVisualCheck(page, testInfo, "Inventory Page with ignored elements", {
+        captureDom: true,
+        diffingOptions: {
+            content: false,
+            dimensions: true,
+            position: true,
+            structure: true,
+            style: true,
+            visual: true,
+        },
+        ignoreRegions: [
+            //'.header_container', // Example: Ignores the entire header
+            '.shopping_cart_container',
+            '[data-test="inventory-item-price"]',
+        ]
+    });
+    await sauceVisualCheck(page, testInfo, "clipped element", {
+        captureDom: true,
+        clipSelector: '[data-test="add-to-cart-sauce-labs-backpack"]',
+    });
 });
 
 test('should not be able to login with a locked user', async ({ page }, testInfo) => {
@@ -28,5 +47,9 @@ test('should not be able to login with a locked user', async ({ page }, testInfo
     expect(page.url()).toMatch(/.*\/$/);
     await expect(page.getByTestId('error')).toContainText('Sorry, this user has been locked out.');
 
-    await sauceVisualCheck(page, testInfo, "Locked User Error Message");
+    await sauceVisualCheck(page, testInfo, "Locked User Error Message", {
+        screenshotOptions: {
+            fullPage: false,
+        }
+    });
 });

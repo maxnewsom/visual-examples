@@ -80,6 +80,13 @@ public class InventoryIgnoreRegionsTest {
                         // Disable all but Position changes on MenuButton
                         .enableOnly(EnumSet.of(DiffingFlag.Position), inventoryPage.getMenuButton())
                         .build());
+
+        // This example clips an element                
+        visual.sauceVisualCheck(
+                "Inventory Page - clips element",
+                new CheckOptions.Builder()
+                        .withClipElement(inventoryPage.getAddBackpackToCartButton())
+                        .build());
     }
 
     @AfterAll

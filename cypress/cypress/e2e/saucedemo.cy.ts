@@ -16,7 +16,7 @@ describe('Sauce Visual Demo', () => {
     cy.sauceVisualCheck('Before Login', {
       captureDom: true,
       regions: [
-        {element: cy.get('[data-test="username"]'), enableOnly: []},
+        {element: cy.get('[data-test="username"]'), enableOnly: ['style']},
         {element: cy.get('[data-test="password"]'), enableOnly: ['style']},
       ],
     })

@@ -7,6 +7,17 @@ export const test = base.extend<SauceVisualFixtures>({
     // with each sauce visual check to reduce duplication.
     ...sauceVisualFixtures({
         captureDom: true,
+        diffingOptions: {
+            content: false,
+            dimensions: true,
+            position: true,
+            structure: true,
+            style: true,
+            visual: true,
+        },
+        screenshotOptions: {
+            fullPage: false,
+        },
     }),
 });
 

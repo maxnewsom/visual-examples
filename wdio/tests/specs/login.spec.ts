@@ -27,16 +27,15 @@ describe('LoginPage', () => {
     await expect(await InventoryPage.waitForIsShown()).toBeTruthy();
 
     await browser.sauceVisualCheck('Inventory Page', {
-      disable: ['content'],
       regions: [
         {
           element: InventoryPage.addBackPackToCartButton,
           enableOnly: ['content'],
         },
-        {
-          element: { x: 0, y: 0, width: 1000, height: 1000 },
-          disableOnly: ['structure'],
-        },
+        // {
+        //   element: { x: 0, y: 0, width: 1000, height: 1000 },
+        //   disableOnly: ['structure'],
+        // },
       ],
     });
   });

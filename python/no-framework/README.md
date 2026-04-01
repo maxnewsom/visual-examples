@@ -15,7 +15,7 @@ Have a framework you'd like to see us officially support? You can submit a featu
 
 ```sh
 # Create the virtual environment for this project if you haven't already
-python -m venv .venv
+python3 -m venv .venv
 
 # Activate the venv in your shell (bash/zsh)
 # See here for Windows / other dist instructions:
@@ -36,7 +36,7 @@ export SAUCE_ACCESS_KEY=__YOUR_SAUCE_ACCESS_KEY__
 - Run the test
 
 ```sh
-python test.py
+python3 test.py
 ```
 
 - Go to https://app.saucelabs.com/visual/builds and select your latest test run
